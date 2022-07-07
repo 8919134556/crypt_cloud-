@@ -1,0 +1,22 @@
+{% extends "data-owner/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block img %}
+<img src="/media/{{view}}" style="width: 50px; height: 50px; border-radius: 70px;" alt="no image" >
+{% endblock %}
+{% block content %}
+<div class="card" style="margin-bottom: 150px; margin-left: 150px;">
+    <img src="/media/{{view1.user_image}}" alt="John" style="width:50%; margin-left: 70px;">
+    <h1 class="text-dark">{{view1.user_name}}</h1>
+    
+    <p>{{view1.user_phone}}</p>
+    <p>{{view1.user_email}}</p>
+    <div style="margin: 24px 0;">
+      <a href="#"><i class="fa fa-dribbble"></i></a> 
+      <a href="#"><i class="fa fa-twitter"></i></a>  
+      <a href="#"><i class="fa fa-linkedin"></i></a>  
+      <a href="#"><i class="fa fa-facebook"></i></a> 
+    </div>
+    
+  </div>
+
+{% endblock %}

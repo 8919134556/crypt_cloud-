@@ -1,0 +1,71 @@
+{% extends "auditor/base.html" %}
+{% block title %}Revoke{% endblock %}
+{% block content %}
+<div class="table-responsive text-white" style="margin-bottom: 250px;">
+    <div class="container text-white" >
+            <h2 class="mb-3 text-white text-center"> Revoke </h2>
+            <table class="table table-bordered text-white" id="sortTable">
+            <thead>
+              <tr>
+                <th>
+                  User name
+                </th>
+                <th>
+                  User email
+                </th>
+                <th>
+                  Atteked file
+                </th>
+                
+                <th>
+                  Date
+                </th>
+                <th>
+                    Revoke Action
+                </th>
+                
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in view %}
+              <tr>
+                
+                <td>
+                <img src="/media/{{i.user_image}}" style="width: 50px; height: 50px; border-radius: 70px;" alt="no image" >
+            
+                {{i.user_name}}
+                </td>
+                <td>
+                  {{i.user_email}}
+                </td>
+                <td>
+                  {{i.attack_file}}
+                  
+                </td>
+                <td>
+                  {{i.datetime_created|timesince}} ago
+                </td>
+                <td>
+                    {% if i.status == "Pending" %}
+                    <a href="auditor_revoke/{{i.user_email}}/{{i.id}}"><button class="btn btn-success">Revoke</button></a>
+                    {% elif i.status == "Accepted" %}
+                    <a href="auditor_revoke/{{i.user_email}}/{{i.id}}"><button class="btn btn-success">Revoke</button></a>
+                    {% else %}
+                    <a href="auditor_accept/{{i.user_email}}/{{i.id}}"><button class="btn btn-success">Accept</button></a>
+                    <p class="text-white"> Account is Revoked</p>
+                    {% endif %}
+                </td>
+                
+  
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        <script>
+            $('#sortTable').DataTable();
+        </script>
+    </div>
+  </div>
+{% endblock %}

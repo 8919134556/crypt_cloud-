@@ -1,0 +1,69 @@
+{% extends "data-user/base.html" %}
+{% block title %}Download-files{% endblock %}
+{% block img %}
+<img src="/media/{{view}}" style="width: 50px; height: 50px; border-radius: 70px;" alt="no image" >
+{% endblock %}
+
+{% block content %}
+
+<div class="table-responsive text-white" style="margin-bottom: 250px;">
+    <div class="container text-white" >
+            <h2 class="mb-3 text-white text-center"> Search Files </h2>
+            <table class="table table-bordered text-white" id="sortTable">
+            <thead>
+              <tr>
+                
+                <th>
+                  User
+                </th>
+                <th>
+                  File name
+                </th>
+                
+                <th>
+                  File Size
+                </th>
+                
+                <th>
+                    Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in view3 %}
+              <tr>
+                <td>
+                    <img src="/media/{{i.owner.user_image}}" style="width: 70px; height: 50px; border-radius: 50px;" alt="image"/>
+                    <span>{{i.owner.user_name}}</span>
+                </td>
+                
+                <td>
+                {{i.file_name}}
+                </td>
+                
+                <td>
+                  {{i.file_size}}
+                </td>
+                <td> 
+                    {% if i.status == "Pending" %}
+                    
+                    <marquee style="width: 100%; color: #f8efef;" scrollamount="3" direction="right" 
+                      behavior="alternate">Your Request is Pending Please Wait...!</marquee>
+                    
+                    {% else %}
+                    <marquee style="width: 100%; color: #f8efef;" scrollamount="3" direction="right" 
+                      behavior="alternate">Your Request is Accepted</marquee>
+                    {% endif %}
+                </td> 
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+          <script>
+            $('#sortTable').DataTable();
+            </script>
+
+    </div>
+  </div>
+{% endblock %}

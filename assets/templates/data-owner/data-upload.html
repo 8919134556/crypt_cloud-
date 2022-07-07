@@ -1,0 +1,48 @@
+{% extends "data-owner/base.html" %}
+{% block title %}Data-Upload{% endblock %}
+
+{% block img %}
+<img src="/media/{{view}}" style="width: 50px; height: 50px; border-radius: 70px;" alt="no image" >
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-bottom: 250px;">
+    <h2 style="color: white;">Upload file</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="mb-3 mt-3" style="width: 450px;">
+        <label style="color: white;" for="email">File Name:</label>
+        <input type="text" class="form-control" id="email" placeholder="Enter email" name="name">
+      </div>
+      <div class="mb-3" style="width: 450px;">
+        <label style="color: white;" for="pwd">Description:</label>
+        <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="decription">
+      </div>
+    <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+      
+        <h6 class="mb-0 me-4 text-white">Select : </h6>
+
+        <div class="form-check form-check-inline mb-0 me-4">
+          <input class="form-check-input" required type="radio" name="inlineRadioOptions" id="femaleGender"
+            value="Public" />
+          <label class="form-check-label text-white" for="femaleGender">Public</label>
+        </div>
+
+        <div class="form-check form-check-inline mb-0 me-4">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+            value="Private" />
+          <label class="form-check-label text-white" for="maleGender">Private</label>
+        </div>  
+
+    </div>
+    <div class="drop-zone">
+        <span class="drop-zone__prompt">Drop file here or click to upload</span>
+        <input type="file" accept=".txt, .html, .java, .py, .css, .js, .c" name="file1"  id="file1" class="drop-zone__input" onchange="uploadFile()">
+    </div>
+    <textarea hidden name="size" id="size" ></textarea>
+
+     
+      <button type="submit" class="btn btn-primary mt-3" style="width: 150px;">Submit</button>
+    </form>
+  </div>
+{% endblock %}

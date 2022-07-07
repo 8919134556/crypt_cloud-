@@ -1,0 +1,36 @@
+{% extends "data-user/base.html" %}
+{% load static %}
+{% block title %}Data-User-Home-Page{% endblock %}
+{% block img %}
+<img src="/media/{{view}}" style="width: 50px; height: 50px; border-radius: 70px;" alt="no image" >
+{% endblock %}
+{% block content %}
+
+<div class="card" style="margin-bottom: 150px; margin-left: 150px; width: 550px;">
+    <img src="{% static 'img/key.png' %}" alt="name" style="width:50%; height: 50px; margin-left: 70px; margin-top: 30px; border-radius: 50px;">
+    <h2 class="text-dark">Credential</h2>
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+    {% if view2 == null %}
+    
+    
+            <div>
+        <label for="Screat Key">Screat Key</label><br>
+        <input type="text" placeholder="Enter Your Screat Key" name="screat_key" required></div>
+        <div>
+            <label for="key" class="mt-2" >Key</label><br>
+            <input type="text" placeholder="Enter Your Key" name="key" style="width: 290px;" id="email" required></div>
+    <div class="mt-3"><button type="submit">submit</button></div>
+    </form>
+</div>
+    {% else %}
+    <div>
+        <div hidden>
+        <textarea id="text-val" rows="4">{{view1}}</textarea><br/></div>
+        <div hidden>
+        <textarea id="f_name" rows="4">{{view2}}</textarea><br/></div>
+        <button type="submit"  onclick="saveStaticDataToFile()" class="btn btn-success" id="dwn-btn">Download</button>
+    </div>
+    {% endif %}
+{% endblock %}
+
